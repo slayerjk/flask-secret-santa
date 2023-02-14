@@ -10,7 +10,6 @@ For LDAP auth I've used this page: https://code.tutsplus.com/tutorials/flask-aut
 
 Project files and folders:
 
-* .venv/ - dir of virtal environment directory
 * instance/sec-san.db - db instance(sqlite), it appears after first init; include tables users, wishlists, lottery
 * run.py - running script
 * myapp/ - dir of application files
