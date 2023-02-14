@@ -1,5 +1,0 @@
-<YOUR-DC>
-<YOUR-ROOT-DN, ex.dc=example,dc=com>
-<YOUR BIND DN USER FULL CN, ex.:cn=bind_dn,ou=users,dc=example,dc=com>
-<YOUR BIND DN USER PASSWORD>
-<YOUR DOMAIN GROUP NAME CONTAINS ALL YOUR USERS>
