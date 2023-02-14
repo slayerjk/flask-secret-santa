@@ -9,7 +9,6 @@ For LDAP auth I've used this page: https://code.tutsplus.com/tutorials/flask-aut
 <h2>Directory Structure</h2>
 
 Project files and folders:
-
 * run.py - running script
 * myapp/ - dir of application files
   * myapp/static/css
@@ -33,6 +32,7 @@ Project files and folders:
   * myapp/ldap-data - your LDAP data and creds to bind
 
 <h2>Requirements</h2>
+
 * flask
 * flask_login
 * flask_sqlalchemy
