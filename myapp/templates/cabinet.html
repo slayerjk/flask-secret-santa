@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+ 
+{% block container %}
+  <h3>Hey {{ current_user.username }}!</h3>
+  <p>This is your private cabinet.</p>
+  
+  <div>
+    <h4>This is your current Wishlist:</h4>
+    <div class="alert-info">
+      {{ wishlist }}
+    </div>
+  </div>
+
+  <br>
+  <p>If you wish to Create/Update your Wishlist, fill the form below(200 symbols only):</p>      
+  <div class="top-pad">
+      <form method="POST" action="{{ url_for('cabinet') }}" role="form">
+          {{ form.csrf_token }}
+          <div class="cabinet-form_textarea" class="form-group"><b>{{ form.wishlist_text.label }}</b>: {{ form.wishlist_text() }}</div>
+          <button type="submit" class="btn btn-success">Submit/Update</button>
+      </form>
+  </div>
+
+  {% if assigned_wishlist %}
+    <br>
+    <div class="top-pad">
+      <h4>This is your assigned Wishlist:</h4>
+        <div class="alert-info">
+          {{ assigned_wishlist }}
+        </div>
+    </div>
+  {% endif %}
+    
+{% endblock %}

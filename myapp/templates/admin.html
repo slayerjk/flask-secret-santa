@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <h3>Hey {{ current_user.username }}!</h3>
+    <p>This is admin panel.</p>
+
+    <h4>These are current admins:</h4>
+    <div>
+        <ul>
+            {% for admin in admins %}
+                <li>{{ admin.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h4>These are current users table:</h4>
+    <span>Number of users so far: {{ users | length }}</span>        
+    <div>
+        <table class="table table-condensed table-bordered table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Wishlist</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    {% for wishlist in wishlists if wishlist.user_id == user.id %}
+                        <td>{{ wishlist.wishlist }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% if lottery | length > 0 %}
+        <div>
+            <h4>These are current assigned wishlist table:</h4>
+            <table class="table table-condensed table-bordered table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Assigned Wishlist</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        {% for lottery_item in lottery if lottery_item.user_id == user.id %}
+                            {% for wishlist in wishlists if wishlist.id == lottery_item.assigned_wishlist %}
+                                <td>{{ wishlist.wishlist }}</td>
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="top-pad">
+            <form method="POST" action="{{ url_for('admin') }}" role="form">
+                {{ form_clear_lottery.csrf_token }}
+                <div class="cabinet-form_textarea" class="form-group">
+                    <b>{{ form_clear_lottery.clear_lottery_table.label }}</b>: {{ form_clear_lottery.clear_lottery_table() }}
+                </div>
+                <button type="submit" class="btn btn-success">Clear</button>
+            </form>
+        </div>
+    {% else %}
+        {% if users | length > 0 and users | length % 2 == 0 %}
+        <b>PARTICIPANTS QUORUM IS OK</b>
+
+        <div class="top-pad">
+            <form method="POST" action="{{ url_for('admin') }}" role="form">
+                {{ form_run_lottery.csrf_token }}
+                <div class="cabinet-form_textarea" class="form-group">
+                    <b>{{ form_run_lottery.run_lottery.label }}</b>: {{ form_run_lottery.run_lottery() }}
+                </div>
+                <button type="submit" class="btn btn-success">Run</button>
+            </form>
+        </div>
+        {% else %}
+            <b>PARTICIPANTS QUORUM IS NOT OK</b>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
