@@ -10,7 +10,6 @@ For LDAP auth I've used this page: https://code.tutsplus.com/tutorials/flask-aut
 
 Project files and folders:
 
-* instance/sec-san.db - db instance(sqlite), it appears after first init; include tables users, wishlists, lottery
 * run.py - running script
 * myapp/ - dir of application files
   * myapp/static/css
@@ -40,6 +39,13 @@ Project files and folders:
 * flask_wtf
 * wtforms
 * ldap3
+
+<h2>sec-san.db</h2>
+
+Tables:
+* users: id, username, is_admin
+* wishlist: id, wishlist, user_id(FK users.id)
+* lottery: id, user_id(user.id), assigned_wishlist(wishlist.id)
 
 <h2>Workflow</h2>
 
