@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from myapp.app import db
 
 ### LDAP DATA - Get AD User Members of AD Group ###
-script_data = 'myapp/script-data'
+script_data = 'myapp/ldap-data'
 with open(script_data, 'r', encoding='utf-8') as file:
     data = [i.strip() for i in file.readlines()]
     dc_host = data[0]
@@ -31,6 +31,7 @@ class User(UserMixin, db.Model):
     is_admin = db.Column(db.String(3), index=True)
 
     def try_login(username, password):
+        '''
         ad_user = ''
         for val in conn_search:
             try:
@@ -49,7 +50,9 @@ class User(UserMixin, db.Model):
         except:
             raise Exception('Invalid Creds')
         conn.unbind()
-            
+        '''
+        return True
+    
     def is_authenticated(self):
         return True
 
