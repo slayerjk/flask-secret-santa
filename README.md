@@ -2,7 +2,7 @@
 
 <h2>Description</h2>
 
-This is the Secret Santa Project. The purpose is to allow users(from LDAP auth and LDAP group members) to add wishlist and get random wishlist to execute.
+This is the Secret Santa Project. The purpose is to allow users(from LDAP auth and LDAP group members) to add own wishlist and get random wishlist to execute.
 
 For LDAP auth I've used this page: https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101
 
